@@ -1,6 +1,6 @@
 import { Worker } from "bullmq";
-import redis from "../libs/redis.js";
-import ExportUsersCsvService from "../service/auth/exportUsersCsv.service.js";
+import redis from "../redis.js";
+import ExportUsersCsvService from "../../service/auth/exportUsersCsv.service.js";
 
 // create a worker for  csv-export  queue (it pick the job from the queue)
 const csvExportWorker = new Worker("csv-export", async(job)=>{

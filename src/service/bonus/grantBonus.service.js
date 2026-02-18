@@ -35,7 +35,7 @@ export default class GrantBonusService extends BaseHandler {
     const existingBonus = await Transaction.findOne({
       where: {
         userId,
-        purpose:bonusType,
+        purpose:transactionPurpose,
       },
       transaction,
     });
@@ -68,7 +68,7 @@ export default class GrantBonusService extends BaseHandler {
           currencyCode: "GC",
           amount: bonus.gcAmount,
           transactionType: TRANSACTION_TYPE.CREDIT,
-          purpose: TRANSACTION_PURPOSE.WELCOME_BONUS,
+          purpose: transactionPurpose,
           referenceId: `${bonusType}_${bonus.id}`,
         },
         { transaction },
@@ -84,7 +84,7 @@ export default class GrantBonusService extends BaseHandler {
           currencyCode: "PSC",
           amount: bonus.scAmount,
           transactionType: TRANSACTION_TYPE.CREDIT,
-          purpose: TRANSACTION_PURPOSE.WELCOME_BONUS,
+          purpose: transactionPurpose,
           referenceId: `${bonusType}_${bonus.id}`,
         },
         { transaction },

@@ -8,10 +8,12 @@ import gameCategoryRoutes from "./src/routes/gameCategory.routes.js"
 import gameRoutes from "./src/routes/game.routes.js"
 import client from "./src/libs/redis.js" 
 import exportUserRoutes from "./src/routes/exportUserCsv.routes.js"
-import csvExportWorker from "./src/jobs/csvExportWorker.js"
+import startCron from "./src/libs/cron.js"
+import bonusWorker from "./src/libs/worker/bonusWorker.js"
 
 const app = express()
 
+startCron();
 const PORT=process.env.PORT || 3000;
 
 app.use(express.json())
