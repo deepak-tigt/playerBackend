@@ -1,6 +1,7 @@
 import { reportTypeError } from "ajv/dist/compile/validate/dataType.js";
 import db from "../../models/index.js";
 import BaseHandler from "../../utils/baseHandler.js";
+import { getIO } from "../../config/socket.js";
 
 const { Transaction } = db;
 
@@ -32,6 +33,19 @@ export default class CreateTransactionService extends BaseHandler {
             },
             {transaction}
         )
+
+        // emiting the transaction
+        // get the global io instance
+        const io = getIO();
+
+        console.log("===========>");
+        
+        io.to(`user_${userId}`).emit("wallet_updated",{
+          userId,
+          purpose,
+          gcAmount,
+          scAmount
+        })
 
         // return the created transaction
         return transactionRecord

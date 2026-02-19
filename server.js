@@ -1,6 +1,8 @@
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
+import {createServer} from "http"
+import { initSocket } from "./src/config/socket.js"
 import authRoutes from "./src/routes/auth.routes.js"
 import errorHandler from "./src/middleware/errorHandler.js"
 import administrationRoutes from "./src/routes/administration.routes.js"
@@ -12,6 +14,12 @@ import startCron from "./src/libs/cron.js"
 import bonusWorker from "./src/libs/worker/bonusWorker.js"
 
 const app = express()
+
+// creating http server 
+const server = createServer(app)
+
+// initializing socket.io 
+export const io = initSocket(server)
 
 startCron();
 const PORT=process.env.PORT || 3000;
@@ -26,6 +34,6 @@ app.use("/api/v1",gameRoutes)
 app.use("/api/v1",exportUserRoutes)
 app.use(errorHandler)
 
-app.listen(PORT,"0.0.0.0",()=>{
+server.listen(PORT,"0.0.0.0",()=>{
     console.log(`server is running on port ${PORT}`);
 })
