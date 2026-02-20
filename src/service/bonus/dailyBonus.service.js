@@ -19,6 +19,7 @@ class DailyBonusCronService {
             console.log("error in the birthday bonus service",error);
         }
 
+        // anniversary bonus 
         try{
             result.anniversary = await anniversaryBonusService.run();
             console.log("anniversary bonus completed");

@@ -44,7 +44,6 @@ export default class GrantBonusService extends BaseHandler {
       throw new Error(`${bonusType} already granted to this user`)
     }
 
-    // check for the previous credit of the birthday
 
     // get the bonus to give
     const bonus = await Bonus.findOne(

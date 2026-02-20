@@ -8,7 +8,7 @@ export default function startCron(){
     // birthday bonus cron -> runs every day at : 
     cron.schedule("* * * * *",async()=>{
         try{
-            console.log("enqueuing birthday bonus");
+            console.log("enqueuing bonus");
             await bonusQueue.add("dailyBonusJob",{})
             console.log(" bonus job added to the queue");
         }
