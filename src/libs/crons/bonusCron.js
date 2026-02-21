@@ -1,6 +1,6 @@
 import cron from "node-cron"
 
-import { bonusQueue } from "./queue.js"
+import { bonusQueue } from "../connection/queue.js"
 
 export default function startCron(){
     

@@ -12,6 +12,7 @@ export const initSocket = (server)=>{
 
         // user joins their personal room 
         socket.on("join",(userId)=>{
+            // room
             socket.join(`user_${userId}`)
             console.log(`user ${userId} joined room : user_${userId}`);
         })

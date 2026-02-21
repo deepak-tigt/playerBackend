@@ -1,4 +1,4 @@
-import redis from "../libs/redis.js";
+import redis from "../libs/connection/redis.js";
 
 class CacheUtil {
   //return the cached data if exist

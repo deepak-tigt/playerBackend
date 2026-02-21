@@ -1,5 +1,5 @@
 import { Worker } from "bullmq";
-import connection from "../redis.js"; 
+import connection from "../connection/redis.js"; 
 import dailyBonusService from "../../service/bonus/dailyBonus.service.js";
 
 const bonusWorker = new Worker(

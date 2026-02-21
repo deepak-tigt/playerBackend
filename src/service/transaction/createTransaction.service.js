@@ -40,6 +40,7 @@ export default class CreateTransactionService extends BaseHandler {
 
         console.log("===========>");
         
+        // emiting to room user_userId
         io.to(`user_${userId}`).emit("wallet_updated",{
           userId,
           purpose,

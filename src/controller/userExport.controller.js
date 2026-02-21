@@ -1,4 +1,4 @@
-import {csvExportQueue} from "../libs/queue.js";
+import {csvExportQueue} from "../libs/connection/queue.js";
 
 class UserExportController{
     async exportUserAsCsv(req,res,next){
