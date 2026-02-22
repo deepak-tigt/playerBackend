@@ -1,4 +1,5 @@
 import createCheckoutSession from "../service/stripe/stripe.service.js";
+import stripeWebhookService from "../service/webhook/stripeWebhook.service.js";
 
 class StripeController {
   async createCheckout(req, res, next) {
@@ -16,6 +17,17 @@ class StripeController {
     }
   }
 
+  async stripeWebHook(req,res,next){
+    try{
+      const rawBody = req.rawBody;
+      const signature = req.headers["stripe-signature"]
+      await stripeWebhookService.handleWebHook({rawBody,signature})
+      res.status(200).json({received: true})
+    }
+    catch(error){
+      next(error)
+    }
+  }
 }
 
 export default new StripeController();

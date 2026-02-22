@@ -28,7 +28,15 @@ app.use(express.static("src/views"))
 startCron();
 const PORT=process.env.PORT || 3000;
 
-app.use(express.json())
+// app.use(express.json())
+
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf.toString() // Only required for Stripe or similar services because it send the secure hash
+  }
+}))
+
+
 // app.use(transactionMiddleware)
 
 app.use('/api/v1',authRoutes);
