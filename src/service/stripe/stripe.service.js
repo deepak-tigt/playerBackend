@@ -9,7 +9,7 @@ async function createCheckoutSession(productData) {
 
   if (!userId) {
     throw new Error("userId required !");
-  } 
+  }
   if (!usd || usd < 0) {
     throw new Error("invalid amount");
   }

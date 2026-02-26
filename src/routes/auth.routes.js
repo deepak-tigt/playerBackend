@@ -3,6 +3,7 @@ import AuthController from "../controller/auth.controller.js";
 import validateAjv from "../middleware/validateAjv.js";
 import userSchema from "../schema/userSchema.js";
 import contextMiddleware from "../middleware/contextMiddleware.js";
+import AuthMiddleware from "../middleware/auth.js"
 
 const router = Router();
 
@@ -35,6 +36,6 @@ router.post(
   AuthController.resetPassword,
 );
 
-router.get("/user/", AuthController.getAllUsers);
+router.get("/users/",AuthMiddleware, AuthController.getAllUsers);
 
 export default router;

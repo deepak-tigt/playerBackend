@@ -9,6 +9,7 @@ import administrationRoutes from "./src/routes/administration.routes.js"
 import gameCategoryRoutes from "./src/routes/gameCategory.routes.js"
 import gameRoutes from "./src/routes/game.routes.js"
 import stripeRoutes from "./src/routes/stripe.routes.js"
+import googleAuthRoutes from "./src/routes/googleAuth.routes.js"
 import client from "./src/libs/connection/redis.js" 
 import exportUserRoutes from "./src/routes/exportUserCsv.routes.js"
 import startCron from "./src/libs/crons/bonusCron.js"
@@ -18,11 +19,10 @@ const app = express()
 
 // creating http server 
 const server = createServer(app)
-
+ 
 // initializing socket.io 
 export const io = initSocket(server)
 
-//
 app.use(express.static("src/views"))
 
 startCron();
@@ -45,6 +45,7 @@ app.use("/api/v1",gameCategoryRoutes)
 app.use("/api/v1",gameRoutes)
 app.use("/api/v1",exportUserRoutes)
 app.use("/api/v1",stripeRoutes)
+app.use("/api/v1",googleAuthRoutes)
 app.use(errorHandler)
 
 server.listen(PORT,"0.0.0.0",()=>{

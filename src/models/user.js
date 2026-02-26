@@ -8,7 +8,7 @@ export default (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // user can have many wallets 
+      // user can have many wallets
       User.hasMany(models.Wallet, { foreignKey: "userId", as: "wallets" });
 
       // user can have many transaction
@@ -61,20 +61,31 @@ export default (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true, // true because using the google auth
         validate: {
           len: [6, 255],
         },
       },
       dateOfBirth: {
         type: DataTypes.DATEONLY,
-        allowNull:true,
+        allowNull: true,
         field: "date_of_birth",
       },
       isEmailVerified: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         field: "is_email_verified",
+      },
+      googleId: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true,
+        field: "google_id",
+      },
+      provider: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "local", // local | google
       },
     },
     {

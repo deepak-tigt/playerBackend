@@ -1,4 +1,3 @@
-import { reportTypeError } from "ajv/dist/compile/validate/dataType.js";
 import db from "../../models/index.js";
 import BaseHandler from "../../utils/baseHandler.js";
 import { getIO } from "../../config/socket.js";
